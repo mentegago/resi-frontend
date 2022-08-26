@@ -19,6 +19,21 @@ const Layout = (props) => {
                     margin-right: auto;
                 }
 
+                @media screen and (max-width: 1000px) {
+                    .global-container {
+                        margin-left: 32px;
+                        margin-right: 32px;
+                        width: auto;
+                    }
+                }
+
+                @media screen and (max-width: 400px) {
+                    .global-container {
+                        margin-left: 16px;
+                        margin-right: 16px;
+                    }
+                }
+
                 h1 {
                     font-family: 'Prompt', sans-serif;
                     font-weight: 700;

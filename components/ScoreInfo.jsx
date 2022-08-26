@@ -57,36 +57,45 @@ const ScoreInfo = (props) => {
         }
     })()
 
+    const accuracy = score.accuracy.toFixed(2)
+
     return (
         <div className="score-info">
             <img src={beatmap.thumbnail} />
-            <div className="score-detail">
-                <a href="#">{mapName}</a>
-                <div className="score-tags">
-                    <PillInfo backgroundColor='#F00'>
-                        {score.accuracy}%
-                    </PillInfo>
-                    <PillInfo backgroundColor='#555'>
-                        {score.score}
-                    </PillInfo>
+            <div className="container">
+                <div className="song-detail">
+                    <div className="song-map-name">
+                        <a href={"https://beatsaver.com/maps/" + beatmap.bsrCode} target='_blank'>{mapName}</a> <span className="song-author">by {beatmap.author}</span>
+                    </div>
+                    <span className="song-map-author">Mapped by {beatmap.mapAuthor}</span>
                 </div>
-            </div>
-            <div className="score-beatmap">
-                <div className="row">
-                    <PillInfo backgroundColor={difficultyColor}>
-                        {difficulty}
-                    </PillInfo>
-                    <PillInfo backgroundColor='#555'>
-                        {characteristic}
-                    </PillInfo>
-                </div>
-                <div className="row">
-                    <PillInfo backgroundColor='#555'>
-                        <a href={"https://beatsaver.com/maps/" + beatmap.bsrCode} target='_blank'>!bsr {beatmap.bsrCode}</a>
-                    </PillInfo>
-                    <PillInfo backgroundColor='rgb(11, 125, 61)'>
-                        {beatmap.mapAuthor}
-                    </PillInfo>
+                <div className="score-detail">
+                    <div className="row">
+                        <PillInfo backgroundColor='#070'>
+                            {accuracy}%
+                        </PillInfo>
+                        <PillInfo backgroundColor='#555'>
+                            {score.score}
+                        </PillInfo>
+                        {
+                            score.modifiers.length > 0 ? score
+                                .modifiers
+                                .split(',')
+                                .map(mod =>
+                                    <PillInfo backgroundColor='#555'>
+                                        {mod}
+                                    </PillInfo>
+                                ) : null
+                        }
+                    </div>
+                    <div className="row">
+                        <PillInfo backgroundColor={difficultyColor}>
+                            {difficulty}
+                        </PillInfo>
+                        <PillInfo backgroundColor='#555'>
+                            {characteristic}
+                        </PillInfo>
+                    </div>
                 </div>
             </div>
             <style jsx>{`
@@ -106,13 +115,32 @@ const ScoreInfo = (props) => {
                     border-radius: 8px;
                     margin-right: 12px;
                 }
+
+                .score-info .container {
+                    display: flex;
+                    flex-direction: row;
+                    flex-grow: 1;
+                }
         
-                .score-detail {
+                .song-detail {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
                     gap: 4px;
                     flex-grow: 1;
+                }
+
+                .song-map-name a, .song-map-name span {
+                    display: inline-block;
+                }
+
+                .song-author {
+                    font-size: .8em;
+                    color: #AAA
+                }
+
+                .song-map-author {
+                    font-size: .8em;
                 }
         
                 .score-tags {
@@ -121,14 +149,14 @@ const ScoreInfo = (props) => {
                     gap: 4px;
                 }
         
-                .score-beatmap {
+                .score-detail {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-end;
                     gap: 6px;
                 }
         
-                .score-beatmap .row {
+                .score-detail .row {
                     display: flex;
                     flex-direction: row;
                     gap: 4px;
@@ -141,6 +169,21 @@ const ScoreInfo = (props) => {
         
                 a:hover {
                     text-decoration: underline;
+                }
+
+                @media screen and (max-width: 640px) {
+                    .score-info .container {
+                        flex-direction: column;
+                        overflow-x: auto;
+                    }
+
+                    .score-detail {
+                        margin-top: 6px;
+                        flex-direction: row;
+                        overflow-x: auto;
+                        gap: 6px;
+                        width: auto;
+                    }
                 }
         `}</style>
         </div>

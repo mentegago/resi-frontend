@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import Header from '../components/Header'
 import UserUploadInfo from '../components/UserUploadInfo'
+import Page from '../components/Page'
 
 export default function Home() {
   const [scores, setScores] = useState([])
@@ -18,11 +18,10 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <Page>
       <Head>
         <title>Rekor Saber Indonesia</title>
       </Head>
-      <Header />
       <div className="global-container container">
         <h1>Skor Terbaru</h1>
         {
@@ -36,6 +35,6 @@ export default function Home() {
           margin-top: 24px;
         }
       `}</style>
-    </div>
+    </Page>
   )
 }

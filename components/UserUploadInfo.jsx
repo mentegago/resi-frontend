@@ -9,8 +9,10 @@ const UserUploadInfo = (props) => {
     <div className="container">
       <div className="user-info">
         <img src={user.profilePicture} />
-        <a href="#" className="name">{user.displayName}</a>
-        <span className="description">mengunggah skor baru</span>
+        <div>
+          <a href="#" className="name">{user.displayName}</a>
+          <span className="description">mengunggah skor baru</span>
+        </div>
       </div>
       <ScoreInfo beatmap={beatmap} score={score} />
 
