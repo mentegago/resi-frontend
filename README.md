@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+Ini adalah frontend untuk Rekor Saber Indonesia, sistem leaderboard Beat Saber untuk pemain Indonesia.
